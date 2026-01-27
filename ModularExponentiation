@@ -1,0 +1,27 @@
+import java.util.Scanner;
+public class ModularExponentiation {
+ static long fastModExp(long a, long b, long m) {
+long result = 1;
+a = a % m;
+while (b > 0) {
+if (b % 2 == 1) {
+result = (result * a) % m;
+  }
+ a = (a * a) % m;
+ b = b / 2;
+ }
+ return result;
+ }
+public static void main(String[] args) {
+Scanner sc = new Scanner(System.in);
+System.out.print("Enter base: ");
+long a = sc.nextLong();
+System.out.print("Enter exponent: ");
+long b = sc.nextLong();
+System.out.print("Enter modulus: ");
+long m = sc.nextLong();
+long result = fastModExp(a, b, m);
+System.out.println("Result: " + result);
+sc.close();
+    }
+}
