@@ -1,0 +1,29 @@
+import java.util.Scanner;
+  class Node{
+  int data;
+  Node left,right;
+  Node(int value){
+      data=value;
+      left=right=null;
+  }
+  }
+  public class LCA_BinaryTree{
+      static Node findLCA(Node root,int n1,n2){
+          if(root==null)
+          return null;
+          if(root.data==n1||root.data==n2)
+          return root;
+          Node LeftLCA =findLCA (root.Left,n1,n2);
+          Node RightLCA =findLCA (root.right,n1,n2);
+          if(LeftLCA!=null&& rightLCA!=null)
+          return root;
+          return (LeftLCA!=null)?leftLCA:rightLCA;
+      }
+      public static void main(String[] args){
+          Scanner sc = new Scanner (System.in);
+          System.out.print("Enter root value:");
+          Node root = new Node (sc.nextInt());
+          root.left=new Node(2)
+      }
+      }
+  }
