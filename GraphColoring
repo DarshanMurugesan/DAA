@@ -1,0 +1,54 @@
+import java.util.Scanner;
+public class GraphColoring{
+    static int v;
+    static int m;
+    static int [] color;
+    static int [][] graph;
+    static boolean isSafe(int v,int c)
+    {
+        for(int i=0;i<v;i++){
+            if(graph[v][i]==i&&color[i]==c)
+            return false;
+        }
+        return true;
+    }
+    static boolean graphColoringutil(int v){
+        if(v==v)
+        return true;
+        for(int c=1;c<=m;c++){
+            if(isSafe(v,c)){
+                color[v]=c;
+            if(graphColoringutil(v+1))
+            return true;
+            color[v]=0;
+                    }
+        }
+        return false;
+        }
+    static void graphColoring(){
+        color = new int[v];
+    if(!graphColoringutil(0)){
+        System.out.println("No Solution Exists:");
+        return;
+    }
+    System.out.println("Solution exists.vertex colors:");
+    for(int i=0;i<v;i++){
+        System.out.println("Vertex"+i+"->color"+color[i]);
+    }
+    }
+public static void main(String[] args){
+    Scanner sc = new Scanner(System.in);
+    System.out.print("Enter number of vertices:");
+    v=sc.nextInt();
+    graph=new int[v][v];
+    System.out.println("Enter adjacency matrix:");
+    for(int i=0;i<v;i++){
+    for(int j=0;j<v;j++){
+        graph[i][j]=sc.nextInt();
+    System.out.print("Enter number of colors:");
+    m=sc.nextInt();
+    graphColoring();
+    }
+    }
+}
+}
