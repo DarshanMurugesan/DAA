@@ -1,0 +1,74 @@
+import java.util.*;
+
+class Item {
+    int profit, weight;
+    double ratio;
+
+    Item(int p, int w) {
+        profit = p;
+        weight = w;
+        ratio = (double) p / w;
+    }
+}
+
+public class FractionalKnapsack {
+
+    public static double getMaxProfit(Item arr[], int n, int capacity) {
+
+       
+        Arrays.sort(arr, new Comparator<Item>() {
+            public int compare(Item a, Item b) {
+                if (b.ratio > a.ratio)
+                    return 1;
+                else if (b.ratio < a.ratio)
+                    return -1;
+                else
+                    return 0;
+            }
+        });
+
+        double totalProfit = 0.0;
+
+        for (int i = 0; i < n; i++) {
+
+            if (capacity >= arr[i].weight) {
+                // Take full item
+                totalProfit += arr[i].profit;
+                capacity -= arr[i].weight;
+            } else {
+               
+                totalProfit += arr[i].ratio * capacity;
+                break;
+            }
+        }
+
+        return totalProfit;
+    }
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter number of items: ");
+        int n = sc.nextInt();
+
+        Item arr[] = new Item[n];
+
+        System.out.println("Enter profit and weight of each item:");
+
+        for (int i = 0; i < n; i++) {
+            int p = sc.nextInt();
+            int w = sc.nextInt();
+            arr[i] = new Item(p, w);
+        }
+
+        System.out.print("Enter knapsack capacity: ");
+        int capacity = sc.nextInt();
+
+        double maxProfit = getMaxProfit(arr, n, capacity);
+
+        System.out.println("Maximum Profit = " + maxProfit);
+
+        sc.close();
+    }
+}
