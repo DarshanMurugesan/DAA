@@ -1,0 +1,78 @@
+import java.util.Scanner;
+
+class Node {
+    int data;
+    Node left, right;
+
+    Node(int value) {
+        data = value;
+        left = right = null;
+    }
+}
+
+public class BSTSearch {
+
+    static Node insert(Node root, int key) {
+        if (root == null) {
+            return new Node(key);
+        }
+
+        if (key < root.data) {
+            root.left = insert(root.left, key);
+        } 
+        else if (key > root.data) {
+            root.right = insert(root.right, key);
+        }
+
+        return root;
+    }
+
+    static void inorder(Node root) {
+        if (root != null) {
+            inorder(root.left);
+            System.out.print(root.data + " ");
+            inorder(root.right);
+        }
+    }
+
+    static boolean search(Node root, int key) {
+        if (root == null)
+            return false;
+
+        if (root.data == key)
+            return true;
+
+        if (key < root.data)
+            return search(root.left, key);
+        else
+            return search(root.right, key);
+    }
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+        Node root = null;
+
+        System.out.print("Enter number of nodes: ");
+        int n = sc.nextInt();
+
+        System.out.println("Enter " + n + " values to insert:");
+        for (int i = 0; i < n; i++) {
+            int value = sc.nextInt();
+            root = insert(root, value);
+        }
+
+        System.out.print("Inorder Traversal of BST: ");
+        inorder(root);
+
+        System.out.print("\nEnter key to search: ");
+        int key = sc.nextInt();
+
+        if (search(root, key))
+            System.out.println(key + " found in BST");
+        else
+            System.out.println(key + " not found in BST");
+
+        sc.close();
+    }
+}
