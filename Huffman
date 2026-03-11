@@ -27,10 +27,25 @@ public class HuffmanCoding {
 
     public static void main(String[] args) {
 
-        int n = 6;
+        Scanner sc = new Scanner(System.in);
 
-        char[] charArray = {'a','b','c','d','e','f'};
-        int[] charfreq = {5, 9, 12, 13, 16, 45};
+        System.out.print("Enter number of characters: ");
+        int n = sc.nextInt();
+
+        char[] charArray = new char[n];
+        int[] charfreq = new int[n];
+
+        System.out.println("Enter characters:");
+
+        for (int i = 0; i < n; i++) {
+            charArray[i] = sc.next().charAt(0);
+        }
+
+        System.out.println("Enter frequencies:");
+
+        for (int i = 0; i < n; i++) {
+            charfreq[i] = sc.nextInt();
+        }
 
         PriorityQueue<HuffmanNode> q =
                 new PriorityQueue<HuffmanNode>(n, new MyComparator());
@@ -71,5 +86,7 @@ public class HuffmanCoding {
         System.out.println("Huffman Codes:");
 
         printCode(root, "");
+
+        sc.close();
     }
 }
