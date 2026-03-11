@@ -13,6 +13,7 @@ class Node {
 public class BSTSearch {
 
     static Node insert(Node root, int key) {
+
         if (root == null) {
             return new Node(key);
         }
@@ -28,6 +29,7 @@ public class BSTSearch {
     }
 
     static void inorder(Node root) {
+
         if (root != null) {
             inorder(root.left);
             System.out.print(root.data + " ");
@@ -36,6 +38,7 @@ public class BSTSearch {
     }
 
     static boolean search(Node root, int key) {
+
         if (root == null)
             return false;
 
@@ -57,6 +60,7 @@ public class BSTSearch {
         int n = sc.nextInt();
 
         System.out.println("Enter " + n + " values to insert:");
+
         for (int i = 0; i < n; i++) {
             int value = sc.nextInt();
             root = insert(root, value);
